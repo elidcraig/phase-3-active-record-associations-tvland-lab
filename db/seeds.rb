@@ -22,9 +22,14 @@ end
 end
 
 network_ids = Network.all
+actors = Actor.all
 
 10.times do
-  Show.create(name: Faker::Movie.title, day: days.sample, season: seasons.sample, genre: Faker::Book.genre, network: network_ids.sample)
+  show = Show.create(name: Faker::Movie.title, day: days.sample, season: seasons.sample, genre: Faker::Book.genre, network: network_ids.sample)
+
+  5.times do
+    Character.create(name: Faker::Name.first_name, catchphrase: Faker::Movie.quote, show: show, actor: actors.sample) 
+  end
 end
 # actors
 # shows
